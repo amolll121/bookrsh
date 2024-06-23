@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Payment Transfer</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f0f0;
+        padding: 20px;
+    }
+    .payment-options {
+        max-width: 400px;
+        margin: 20px auto;
+        background-color: #fff;
+        padding: 20px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+        text-align: center;
+    }
+    button {
+        padding: 10px 20px;
+        background-color: #3498db;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-top: 10px;
+    }
+</style>
+</head>
+<body>
+<div class="payment-options">
+    <h2>Select Payment Option</h2>
+    <p>Transfer your points as payment:</p>
+    <button id="option1Btn">Pay with Option 1</button>
+    <button>Pay with Option 2</button>
+    <button>Pay with Option 3</button>
+    <!-- Add more payment options as needed -->
+</div>
+
+<script>
+    const option1Btn = document.getElementById('option1Btn');
+
+    option1Btn.addEventListener('click', function() {
+        window.location.href = 'upi-transfer.html';
+    });
+</script>
+
+</body>
+</html>

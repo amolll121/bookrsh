@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UPI Transfer Page</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f0f0;
+        padding: 20px;
+    }
+    .upi-transfer {
+        max-width: 400px;
+        margin: 20px auto;
+        background-color: #fff;
+        padding: 20px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+        text-align: center;
+    }
+    button {
+        padding: 10px 20px;
+        background-color: #3498db;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-top: 10px;
+    }
+</style>
+</head>
+<body>
+<div class="upi-transfer">
+    <h2>UPI Transfer Page</h2>
+    <p>Please scan the QR code or enter the UPI ID to complete the transfer.</p>
+    <img src="example_qr_code.png" alt="QR Code" width="200">
+    <br><br>
+    <input type="text" id="upiId" placeholder="Enter UPI ID">
+    <br><br>
+    <button id="confirmTransferBtn">Confirm Transfer</button>
+</div>
+
+<script>
+    const confirmTransferBtn = document.getElementById('confirmTransferBtn');
+
+    confirmTransferBtn.addEventListener('click', async function() {
+        const upiId = document.getElementById('upiId').value.trim();
+        const amount = 100; // Example amount in rupees (you can set this dynamically)
+
+        try {
+            const response = await fetch('https://your-backend-service.onrender.com/api/transfer', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ amount, upiId }),
+            });
+
+            const data = await response.json();
+            console.log(data); // Handle success response, redirect to payment gateway or process accordingly
+
+            alert('UPI transfer initiated successfully. Redirecting to payment gateway...');
+            // Example redirect (replace with actual payment gateway handling)
+            window.location.href = `https://your-payment-gateway.com/checkout?orderId=${data.orderId}&amount=${data.amount}`;
+        } catch (error) {
+            console.error(error);
+            alert('Failed to initiate UPI transfer. Please try again.');
+        }
+    });
+</script>
+
+</body>
+</html>
